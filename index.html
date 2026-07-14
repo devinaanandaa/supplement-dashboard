@@ -375,8 +375,7 @@
         if (pendingGeoData) { drawGeoChart(pendingGeoData); pendingGeoData = null; }
       });
 
-      const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRWoHXMLWb-9r5AlpLISs0nxl2NCP7LV_VGka0vrTZxw8MwWUTvgSqwwXAylGIlKh7OwpUkjzE8f0lSrjH6CXyOzLnkn7dNEyTuMFIm8oUU6WTgLZy5ZNHBMM9f_mb8Qw2FXto2kPZCz32NUvvg7cqVYdxsNV3RD6Xn0k1rA8iZL-H_D1r_fpBn-gWma4-jeo8GgZbdThV_q9Q8hOnFHc0m4Pqy6GoA7y3xoZQE1O28cNqofxQjxAhO2f15Taoo0THYz6pB1SWfzHkkDYdEe3poZl9BXQ&lib=MmoOtdplr6RLQOD8Wn5-P69Ou90LI9-Ag";
-
+      const API_URL = "https://script.google.com/macros/s/AKfycbweUfWd_0gJ1v8bXoUtxlO-04qCQxgVY3462OdouZJXdj4XVVRqVfw-jeKzNkZNbfb-oA/exec"
 fetch(API_URL)
   .then(response => response.json())
   .then(onInitialLoad)
