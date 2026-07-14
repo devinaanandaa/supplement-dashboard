@@ -375,11 +375,18 @@
         if (pendingGeoData) { drawGeoChart(pendingGeoData); pendingGeoData = null; }
       });
 
-      const API_URL = "https://script.google.com/macros/s/AKfycbweUfWd_0gJ1v8bXoUtxlO-04qCQxgVY3462OdouZJXdj4XVVRqVfw-jeKzNkZNbfb-oA/exec"
-fetch(API_URL)
-  .then(response => response.json())
-  .then(onInitialLoad)
-  .catch(handleError);
+const API_URL = "https://script.google.com/macros/s/AKfycbweUfWd_0gJ1v8bXoUtxlO-04qCQxgVY3462OdouZJXdj4XVVRqVfw-jeKzNkZNbfb-oA/exec";
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    google.charts.load('current', {packages:['geochart']});
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(onInitialLoad)
+      .catch(handleError);
+
+});
 
       document.getElementById('resetFiltersBtn').addEventListener('click', function () {
         ['filterMonthYear', 'filterCategory', 'filterProduct', 'filterLocation', 'filterPlatform']
@@ -415,15 +422,20 @@ fetch(API_URL)
       fillSelect('filterPlatform', options.platforms);
     }
 
-    function fillSelect(id, values) {
-      var select = document.getElementById(id);
-      values.forEach(function (v) {
-        var opt = document.createElement('option');
+function fillSelect(id, values) {
+
+    values = values || [];
+
+    var select = document.getElementById(id);
+
+    values.forEach(function(v){
+        var opt = document.createElement("option");
         opt.value = v;
         opt.textContent = v;
         select.appendChild(opt);
-      });
-    }
+    });
+
+}
 
     function currentFilters() {
       return {
@@ -463,7 +475,7 @@ fetch(API_URL)
       document.getElementById('filterUpdating').classList.remove('active');
       handleError(error);
     });
-
+   }
 
     // ---------------- Render orchestration ----------------
     function renderAll(data) {
